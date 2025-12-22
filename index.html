@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--FONT-AWESOME-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--MAIN CSS-->
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+</style>
+    
+</head>
+<body>
+    <!--HEADER DESIGN-->
+    <header class="header">
+        <a href="#" class="logo">Portfolio</a>
+        <i class="fa-solid fa-bars" id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="#Home" class="active" >Home</a>
+            <a href="#About">About</a>
+            <a href="#Skill">Skill</a>
+            <a href="#Portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!--HOME SECTION DESIGN-->
+    
+    <section class="Home" id="Home">
+    <div class="Home-content">
+        <h3>Hi, I'm</h3>
+
+        <!-- Blinking Name -->
+        <h1 class="blink-name">Anshu Kumar Singh</h1>
+
+        <h3>Third-Year B.Tech | Aspiring Software Engineer</h3>
+
+        <p>
+            I'm a software engineer in the making, passionate about building modern,
+            scalable, and user-centric applications, with hands-on experience in the
+            MERN stack and strong problem-solving skills in Java.
+        </p>
+
+        <div class="social-media">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/anshu-singh-8230032bb"><i class="fa-brands fa-linkedin"></i></a>
+            <a href=""><i class="fa-brands fa-github"></i></a>
+        </div>
+
+        <!-- Open Resume Popup -->
+        <button class="btn" onclick="openResume()">Download CV</button>
+    </div>
+
+    <!-- Floating Image -->
+    <div class="Home-img">
+        <img src="anshu.jpeg" alt="Anshu Kumar Singh">
+    </div>
+</section>
+
+<!-- Resume Popup Modal -->
+<div id="resumeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeResume()">&times;</span>
+
+        <iframe src="RESUME ANSHU 12.pdf"></iframe>
+
+        <a href="RESUME ANSHU 12.pdf" download class="btn modal-btn">Download CV</a>
+    </div>
+</div>
+
+
+    <!--ABOUT SECTION DESGIN-->
+    <section class="About" id="About">  
+         
+        <div class="about-img">
+            <img src="anshu.jpeg" alt="Anshu Kumar Singh">
+        </div>
+        <div class="about-content">
+        <h2 class="heading">About <span>Me</span></h2>
+        <h3>Web Developer</h3>
+        <p>Hello! I'm Anshu Kumar Singh, a third-year B.Tech student passionate about full-stack web development and problem solving. I love creating clean, efficient, and user-friendly applications using the MERN stack and Java.</p>
+        </div>
+    </section>
+        <!-- SERVICES SECTION DESIGN-->>
+        <section class="services" id="services">
+            <h2 class="heading">My <span>Services</span></h2>
+
+            <div class="services-container">
+            <div class="services-box">
+                <i class="fa-solid fa-code"></i>
+                <h3>Web Development</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, deserunt. Voluptate excepturi facilis fuga consequuntur sequi tenetur voluptatum mollitia quibusdam expedita delectus ipsum quidem, aliquam omnis, accusamus totam quae voluptas ad. Ex corrupti nemo nisi!</p>
+                <a href="#" class="btn">Read more</a>
+            </div>
+ 
+            <div class="services-box">
+                <i class="fa-solid fa-palette"></i>
+                <h3>UI/UX Development</h3>
+                <p> rapidly evolving digital world, the terms UI (User Interface) and UX (User Experience) have become central to the design and development of websites, mobile applications, and digital products. Although often used together, UI and UX represent two distinct yet interconnected disciplines that shape how users interact with technology. A seamless, intuitive digital experience depends.</p>
+                <a href="#" class="btn">Read more</a>
+            </div>
+
+            <div class="services-box">
+                <i class="fa-brands fa-android"></i>
+                <h3>App Development</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos a temporibus excepturi laudantium pariatur similique nemo! Alias, nobis velit sint voluptas doloribus quibusdam deleniti qui quo incidunt, similique iusto ea reprehenderit aut rerum! Illo incidunt corrupti ut vitae.</p>
+                <a href="#" class="btn">Read more</a>
+            </div>
+        </div>
+    </section>
+
+    <!--SKILL SECTION DESIGN-->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+</head>
+<body>
+    <!-- SKILLS SECTION -->
+    <section class="skills" id="Skill">
+        <h1 class="sub-title">My <span>Skills</span></h1>
+        <div id="skills-3d-container" class="skills-container"></div>
+    </section>
+
+    <script>
+        // ================= PERFECT STATIC CYLINDERS + FAR RIGHT POPUP =================
+        const container = document.getElementById('skills-3d-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setClearColor(0x000000, 0);
+        container.appendChild(renderer.domElement);
+        camera.position.set(0, 0, 10);
+
+        const cameraDefaultPos = new THREE.Vector3(0, 0, 10);
+        const cameraZoomPos = new THREE.Vector3(-1, 0, 6);
+
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+
+        const skills = [
+            { name: "HTML", color: "#ff4444", type: "Frontend", definition: "HTML is the standard markup language for creating web pages." },
+            { name: "CSS", color: "#ffaa00", type: "Frontend", definition: "CSS is used to style and layout web pages." },
+            { name: "JavaScript", color: "#00e676", type: "Programming", definition: "JavaScript is a high-level programming language." },
+            { name: "React", color: "#00b0ff", type: "Frontend Library", definition: "React is a JavaScript library for UI development." },
+            { name: "Python", color: "#d500f9", type: "Backend", definition: "Python is a high-level language used for backend development, AI, and data science." }
+        ];
+
+        // ENLARGED SKILL BOX
+        const skillBox = new THREE.Mesh(
+            new THREE.BoxGeometry(3.5, 4.5, 1.2),
+            new THREE.MeshBasicMaterial({ color: 0x111133 })
+        );
+        skillBox.position.set(-3.5, 0, 0);
+        scene.add(skillBox);
+
+        // BIGGER "Technical Skills" LABEL
+        const labelCanvas = document.createElement("canvas");
+        labelCanvas.width = 300; labelCanvas.height = 80;
+        const lctx = labelCanvas.getContext("2d");
+        lctx.font = "bold 36px Arial";
+        lctx.fillStyle = "#ffffff";
+        lctx.shadowColor = "#00e5ff";
+        lctx.shadowBlur = 20;
+        lctx.fillText("  Technical Skills", 15, 55);
+
+        const boxLabel = new THREE.Sprite(
+            new THREE.SpriteMaterial({
+                map: new THREE.CanvasTexture(labelCanvas),
+                transparent: true,
+                blending: THREE.AdditiveBlending
+            })
+        );
+        boxLabel.scale.set(3.2, 0.8, 1);
+        boxLabel.position.set(-3.5, 1.9, 0.8);
+        scene.add(boxLabel);
+
+        // HUGE "View Skills" BUTTON
+        const btnCanvas = document.createElement("canvas");
+        btnCanvas.width = 400; btnCanvas.height = 100;
+        const bctx = btnCanvas.getContext("2d");
+        bctx.font = "bold 42px Arial";
+        bctx.fillStyle = "#00ffcc";
+        bctx.shadowColor = "#00ffcc";
+        bctx.shadowBlur = 30;
+        bctx.textAlign = "center";
+        bctx.textBaseline = "middle";
+        bctx.fillText("View Skills", 200, 50);
+
+        const openBtn = new THREE.Sprite(
+            new THREE.SpriteMaterial({
+                map: new THREE.CanvasTexture(btnCanvas),
+                transparent: true,
+                blending: THREE.AdditiveBlending
+            })
+        );
+        openBtn.scale.set(3.5, 1.2, 1);
+        openBtn.position.set(-3.5, -2.6, 0.8);
+        openBtn.name = "openButton";
+        scene.add(openBtn);
+
+        const origin = skillBox.position.clone();
+        let lines = [], labels = [], parts = [], typeLabels = [], infoBoxes = [];
+        let skillsOpen = false;
+        let activeSkill = null;
+
+        function wrapText(ctx, text, maxWidth) {
+            const words = text.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+            for (let i = 1; i < words.length; i++) {
+                const testLine = currentLine + ' ' + words[i];
+                const metrics = ctx.measureText(testLine);
+                if (metrics.width > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                } else {
+                    currentLine = testLine;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        skills.forEach((skill, i) => {
+            const end = origin.clone();
+            const line = new THREE.Line(
+                new THREE.BufferGeometry().setFromPoints([origin, end]),
+                new THREE.LineBasicMaterial({ color: skill.color })
+            );
+            scene.add(line);
+            lines.push({ line, end });
+
+            // HUGE SKILL NAME LABELS
+            const c = document.createElement("canvas");
+            c.width = 400; c.height = 100;
+            const ctx = c.getContext("2d");
+            ctx.font = "bold 48px Arial";
+            ctx.fillStyle = skill.color;
+            ctx.shadowColor = skill.color;
+            ctx.shadowBlur = 25;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(skill.name, 200, 50);
+
+            const label = new THREE.Sprite(
+                new THREE.SpriteMaterial({
+                    map: new THREE.CanvasTexture(c),
+                    transparent: true,
+                    blending: THREE.AdditiveBlending
+                })
+            );
+            label.scale.set(0, 0, 0);
+            scene.add(label);
+            labels.push(label);
+
+            // *** STATIC CYLINDERS - NO ROTATION ***
+            const cylinderGeometry = new THREE.CylinderGeometry(0.4, 0.4, 1.2, 32);
+            const cylinder = new THREE.Mesh(
+                cylinderGeometry,
+                new THREE.MeshBasicMaterial({
+                    color: skill.color,
+                    transparent: true,
+                    opacity: 0.95
+                })
+            );
+            cylinder.position.copy(origin);
+            cylinder.scale.set(0, 0, 0);
+            cylinder.userData.floatOffset = Math.random() * Math.PI * 2;
+            scene.add(cylinder);
+            parts.push(cylinder);
+
+            // Type labels
+            const tc = document.createElement("canvas");
+            tc.width = 350; tc.height = 80;
+            const tctx = tc.getContext("2d");
+            tctx.font = "bold 32px Arial";
+            tctx.fillStyle = skill.color;
+            tctx.shadowColor = skill.color;
+            tctx.shadowBlur = 20;
+            tctx.textAlign = "center";
+            tctx.textBaseline = "middle";
+            tctx.fillText(skill.type, 175, 40);
+
+            const typeLabel = new THREE.Sprite(
+                new THREE.SpriteMaterial({
+                    map: new THREE.CanvasTexture(tc),
+                    transparent: true,
+                    blending: THREE.AdditiveBlending
+                })
+            );
+            typeLabel.scale.set(0, 0, 0);
+            scene.add(typeLabel);
+            typeLabels.push(typeLabel);
+
+            // FAR RIGHT INFO BOX (COMPLETELY OUTSIDE LINES)
+            const dpr = window.devicePixelRatio || 2;
+
+         const infoCanvas = document.createElement("canvas");
+         infoCanvas.width = 1500 * dpr;
+           infoCanvas.height = 840 * dpr;
+
+            const ictx = infoCanvas.getContext("2d");
+            ictx.scale(dpr, dpr);
+            ictx.fillRect(0, 0, 750, 420);
+            ictx.font = "bold 52px Arial";
+
+            ictx.fillStyle = "#0b0f2a";
+            ictx.fillRect(0, 0, 750, 420);
+            ictx.font = "bold 52px Arial";
+            ictx.fillStyle = "#ffffff";
+            ictx.shadowColor = skill.color;
+            ictx.shadowBlur = 30;
+            ictx.textAlign = "left";
+            ictx.textBaseline = "top";
+            ictx.fillText(skill.name, 40, 75);
+            ictx.font = "bold 38px Arial";
+            ictx.fillStyle = skill.color;
+            ictx.shadowBlur = 22;
+            ictx.fillText(skill.type, 40, 130);
+            ictx.font = "28px Arial";
+            ictx.fillStyle = "#cccccc";
+            ictx.shadowBlur = 12;
+            const wrappedLines = wrapText(ictx, skill.definition, 660);
+            wrappedLines.forEach((line, j) => {
+                ictx.fillText(line, 40, 185 + j * 40);
+            });
+
+           
+              const texture = new THREE.CanvasTexture(infoCanvas);
+texture.minFilter = THREE.LinearFilter;
+texture.magFilter = THREE.LinearFilter;
+texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
+const infoBox = new THREE.Sprite(
+    new THREE.SpriteMaterial({
+        map: texture,
+        transparent: true,
+        opacity: 0
+    })
+);
+
+            infoBox.scale.set(6.5, 3.2, 1);
+            infoBox.position.copy(origin);
+            scene.add(infoBox);
+            infoBoxes.push(infoBox);
+        });
+
+        container.addEventListener("click", (e) => {
+            const rect = container.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+
+            const hits = raycaster.intersectObjects([openBtn, ...parts]);
+            if (!hits.length) return;
+
+            const obj = hits[0].object;
+
+            if (obj.name === "openButton") {
+                skillsOpen = !skillsOpen;
+                activeSkill = null;
+            } else if (skillsOpen) {
+                const i = parts.indexOf(obj);
+                activeSkill = activeSkill === i ? null : i;
+            }
+        });
+
+        let progress = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            progress += 0.02;
+
+            const openAmt = skillsOpen ? Math.min(progress * 5, 5) : 0; // Reduced spread
+
+            lines.forEach((o, i) => {
+                const isActive = activeSkill === i;
+                const scale = !skillsOpen ? 0 : (activeSkill === null ? 1.2 : (isActive ? 1.8 : 0.6));
+
+                o.end.x = origin.x + openAmt; // Max X = -3.5 + 5 = 1.5
+                o.end.y = origin.y + (i - 2) * 0.85 * (skillsOpen ? 1 : 0);
+                o.line.geometry.setFromPoints([origin, o.end]);
+
+                const floatY = Math.sin(progress * 0.5 + parts[i].userData.floatOffset) * 0.15 * (skillsOpen ? 1 : 0);
+
+                parts[i].position.set(
+                    THREE.MathUtils.lerp(parts[i].position.x, skillsOpen ? o.end.x + 1.2 : origin.x, 0.05),
+                    o.end.y + floatY,
+                    0
+                );
+
+                labels[i].position.copy(parts[i].position).add(new THREE.Vector3(-1.4, 0, 0));
+                typeLabels[i].position.copy(parts[i].position).add(new THREE.Vector3(-1.1, -0.45, 0));
+
+                parts[i].scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
+
+                const labelScale = scale * 1.4;
+                labels[i].scale.lerp(new THREE.Vector3(labelScale, labelScale * 0.35, labelScale), 0.1);
+
+                const typeScale = scale * 1.0;
+                typeLabels[i].scale.lerp(new THREE.Vector3(typeScale, typeScale * 0.35, typeScale), 0.1);
+
+                
+            });
+
+            
+infoBoxes.forEach((info, i) => {
+    const show = activeSkill === i && skillsOpen;
+    info.material.opacity += show ? 0.08 : -0.08;
+    info.material.opacity = THREE.MathUtils.clamp(info.material.opacity, 0, 1);
+
+    // WAY RIGHT + BEHIND CYLINDERS (X=9, Z=-4)
+    const targetPos = show ? new THREE.Vector3(15, 0, -4) : parts[i].position;
+
+                const targetScale = show ? new THREE.Vector3(12, 6.5, 1) : new THREE.Vector3(2, 0.85, 1);
+
+                info.position.lerp(targetPos, 0.12);
+                info.scale.lerp(targetScale, 0.12);
+            });
+
+            camera.position.lerp(skillsOpen ? cameraZoomPos : cameraDefaultPos, 0.05);
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener("resize", () => {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
+    </script>
+
+    <!--PORTFOLIO SECTION-->
+
+<section class="Portfolio" id="Portfolio">
+  <h2 class="heading">Latest <span>Projects</span></h2>
+
+  <div class="portfolio-cards">
+
+    <div class="project-card">
+      <img src="web design 1.jpg" alt="Project 1">
+      <div class="project-content">
+        <h3>Portfolio Website</h3>
+        <p>Personal responsive portfolio built using HTML, CSS and JavaScript.</p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="web design 2 .jpg" alt="Project 2">
+      <div class="project-content">
+        <h3>MERN Stack App</h3>
+        <p>Full stack application using MongoDB, Express, React and Node.js.</p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="web design 3.jpg" alt="Project 3">
+      <div class="project-content">
+        <h3>CRUD System</h3>
+        <p>CRUD application with authentication and database integration.</p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="web design 6.jpg" alt="Project 4">
+      <div class="project-content">
+        <h3>Dashboard UI</h3>
+        <p>Modern admin dashboard with charts and clean UI design.</p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="web design 7.jpg" alt="Project 5">
+      <div class="project-content">
+        <h3>Web Application</h3>
+        <p>Interactive web app focusing on performance and UX.</p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+    <!--CONTACT SECTION-->
+    <section class="contact" id="contact">
+  <h2 class="heading">Contact <span>Me</span></h2>
+
+  <form action="#" method="post">
+    <div class="input-group">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+    </div>
+
+    <div class="input-group">
+      <input type="tel" placeholder="Mobile Number">
+      <input type="text" placeholder="Email Subject">
+    </div>
+
+    <textarea rows="6" placeholder="Your Message" required></textarea>
+
+    <input type="submit" value="Send Message" class="btn">
+  </form>
+</section>
+
+
+    <!--FOOTER SECTION-->
+    
+    <footer class="footer">
+  <div class="footer-text">
+    <p>Copyright &copy; 2025 by <span>@anshucode</span> | All Rights Reserved.</p>
+  </div>
+
+  <div class="footer-iconTop">
+    <a href="#Home" aria-label="Back to top">
+      <i class="fa-solid fa-angle-up"></i>
+    </a>
+  </div>
+</footer>
+
+<!-- Scroll Reveal JS -->
+<script src="https://unpkg.com/scrollreveal"></script>
+
+<!-- Typed JS -->
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+<!-- Main JS -->
+<script src="js/main.js"></script>
+
+
+
+<script>
+function openResume() {
+    document.getElementById("resumeModal").style.display = "block";
+}
+
+function closeResume() {
+    document.getElementById("resumeModal").style.display = "none";
+}
+</script>
+
+
+</body>
+</html>
+
